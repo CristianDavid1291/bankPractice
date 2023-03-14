@@ -3,21 +3,23 @@ package com.bankingPractice.testCases;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.bankingPractice.pageObjects.HomePage;
 import com.bankingPractice.pageObjects.LoginPage;
 import com.bankingPractice.utilities.Base;
+import com.bankingPractice.utilities.Provider;
 
 public class TC_LoginTest_001 extends Base {
 
-	@Test
-	public void test_001() {
+	@Test(dataProvider = "getData", dataProviderClass = Provider.class)
+	public void test_001(String userP,String passwordP, String expectationP) {
 		
 		logger.info("URL is opened");
 		
 		LoginPage lp = new LoginPage(driver);
-		lp.setName(user);
-		logger.info("user name entered");
-		lp.setPassword(password);
-		logger.info("password entered");
+		lp.setName(userP);
+		logger.info("user name entered" + userP);
+		lp.setPassword(passwordP);
+		logger.info("password entered"+ passwordP);
 		lp.clickLoginButton();
 		logger.info("Login button clicked");
 		logger.info("Validating page tittle");
@@ -28,6 +30,7 @@ public class TC_LoginTest_001 extends Base {
 			Assert.assertTrue(false);
 			logger.info("Login test failed");
 		}
+		HomePage hm = lp.logOut();
 	}
 
 }

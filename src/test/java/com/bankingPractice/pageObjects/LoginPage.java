@@ -41,6 +41,14 @@ public class LoginPage {
 	public void clickresetButton() {
 		resetButton.click();
 	}
+	
+	public HomePage logOut() {
+		HomePage hm = new HomePage(driver);
+		hm.clickLogOutButton();
+		driver.switchTo().alert().accept();
+		driver.switchTo().defaultContent();
+		return hm;
+	}
 
 	
 
