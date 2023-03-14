@@ -3,6 +3,7 @@ package com.bankingPractice.utilities;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -18,13 +19,15 @@ public class Base {
 	protected String user = rp.getUser();
 	protected String password = rp.getPassword();
 	
-	@BeforeClass
+
 	public void setUp() {
 		
 		switch (browser) {
 		case "chrome":
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--remote-allow-origins=*");
 			Chrome ch = new Chrome();
-			driver = ch.initBrowser();
+			driver = ch.initBrowser(options);
 			break;
 
 		default:

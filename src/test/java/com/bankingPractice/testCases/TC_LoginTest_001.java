@@ -9,7 +9,7 @@ public class TC_LoginTest_001 extends Base {
 	
 	@Test
 	public void test_001() {
-		
+		setUp();
 		LoginPage lp = new LoginPage(driver);
 		lp.setName(user);
 		lp.setPassword(password);
