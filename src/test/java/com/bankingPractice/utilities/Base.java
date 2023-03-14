@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import com.bankingPractice.browsers.Chrome;
 
@@ -22,13 +23,13 @@ public class Base {
 	protected String password = rp.getPassword();
 	public static Logger logger;
 	
-	
+	@Parameters("browser")
 	@BeforeClass
-	public void setUp() {
+	public void setUp(String br) {
 		logger = Logger.getLogger("Banking Practice");
 		PropertyConfigurator.configure("log4j.properties");
 		
-		switch (browser) {
+		switch (br) {
 		case "chrome":
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*");
