@@ -2,6 +2,8 @@ package com.bankingPractice.utilities;
 
 import java.time.Duration;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
@@ -18,9 +20,13 @@ public class Base {
 	protected String timeOut = rp.getTimeOut();
 	protected String user = rp.getUser();
 	protected String password = rp.getPassword();
+	public static Logger logger;
 	
-
+	
+	@BeforeClass
 	public void setUp() {
+		logger = Logger.getLogger("Banking Practice");
+		PropertyConfigurator.configure("log4j.properties");
 		
 		switch (browser) {
 		case "chrome":
